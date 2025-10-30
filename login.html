@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Феникс — Вход волонтёра</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f8f8;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    .login-section {
+      max-width: 420px;
+      margin: 60px auto;
+      background: #fff;
+      border: 2px solid #ff7a00;
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .login-section h2 {
+      color: #ff7a00;
+      margin-bottom: 14px;
+    }
+
+    .login-section p {
+      color: #666;
+      margin-bottom: 22px;
+    }
+
+    .login-section input {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-family: inherit;
+    }
+
+    .login-section button {
+      display: inline-block;
+      background: #ff7a00;
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 24px;
+      cursor: pointer;
+      transition: all .25s;
+      box-shadow: 0 6px 18px rgba(255,122,0,0.18);
+    }
+
+    .login-section button:hover {
+      background: #ffae42;
+      transform: translateY(-3px);
+    }
+
+    .message {
+      margin-top: 14px;
+      font-weight: 500;
+    }
+
+    .success {
+      color: #28a745;
+    }
+
+    .error {
+      color: #e74c3c;
+    }
+
+    @media (max-width:600px) {
+      .login-section {
+        margin: 40px 20px;
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">🔥 Феникс</div>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="about.html">О нас</a>
+      <a href="structure.html">Структура</a>
+      <a href="projects.html">Проекты</a>
+      <a href="methodology.html">Методическая база</a>
+      <a href="best.html">Лучшие месяца</a>
+      <a href="contacts.html">Контакты</a>
+      <a href="login.html" class="active">Вход</a>
+    </nav>
+  </header>
+
+  <section class="login-section">
+    <h2>Вход волонтёра</h2>
+    <p>Введите ваше имя и индивидуальный номер волонтёра</p>
+
+    <input type="text" id="name" placeholder="Имя">
+    <input type="text" id="id" placeholder="Индивидуальный номер">
+
+    <button onclick="login()">Войти</button>
+
+    <div class="message" id="message"></div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Быстрые ссылки</h3>
+        <a href="index.html">Главная</a>
+        <a href="about.html">О нас</a>
+        <a href="projects.html">Проекты</a>
+        <a href="contacts.html">Контакты</a>
+      </div>
+      <div class="footer-section">
+        <h3>Контакты</h3>
+        <p>📞 <a href="tel:+77719614620">+7 771 961 4620</a></p>
+        <p>📧 <a href="mailto:slavavolkov730@gmail.com">slavavolkov730@gmail.com</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Мы в соцсетях</h3>
+        <div class="socials">
+          <a href="https://instagram.com/vc_feniks" target="_blank" class="social-icon instagram" aria-label="Instagram"></a>
+          <a href="https://wa.me/77719614620" target="_blank" class="social-icon whatsapp" aria-label="WhatsApp"></a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">© 2025 Волонтёрский центр «Феникс». Все права защищены.</p>
+  </footer>
+
+  <a href="#top" class="to-top">↑</a>
+
+  <script>
+    const volunteers = [
+      { name: "Алиса", id: "F001" },
+      { name: "Бекзат", id: "F002" },
+      { name: "Мария", id: "F003" },
+      { name: "Слава", id: "F004" }
+    ];
+
+    function login() {
+      const name = document.getElementById("name").value.trim();
+      const id = document.getElementById("id").value.trim();
+      const message = document.getElementById("message");
+
+      if (!name || !id) {
+        message.textContent = "Пожалуйста, заполните все поля.";
+        message.className = "message error";
+        return;
+      }
+
+      const found = volunteers.find(v => v.name.toLowerCase() === name.toLowerCase() && v.id === id);
+
+      if (found) {
+        message.textContent = "Добро пожаловать, " + found.name + "!";
+        message.className = "message success";
+      } else {
+        message.textContent = "Имя или номер не совпадают. Попробуйте снова.";
+        message.className = "message error";
+      }
+    }
+
+    // Кнопка "вверх"
+    const toTop = document.querySelector(".to-top");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) toTop.classList.add("show");
+      else toTop.classList.remove("show");
+    });
+  </script>
+</body>
+</html>
