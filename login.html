@@ -3,85 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Феникс — Вход волонтёра</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Феникс — Вход и Профиль</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f8f8f8;
-      color: #222;
-      line-height: 1.6;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Poppins',sans-serif;background:#f8f8f8;color:#222;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    header{position:sticky;top:0;z-index:100;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 6%;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+    .logo{font-weight:700;color:#ff7a00;font-size:1.2rem;display:flex;align-items:center;gap:8px}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:#555;text-decoration:none;padding:8px 6px;border-radius:6px;position:relative;transition:color .25s}
+    nav a:hover{color:#ff7a00}
+    nav a.active::after{content:'';position:absolute;left:0;right:0;bottom:-8px;height:3px;background:#ff7a00;border-radius:4px;transform:translateY(6px);opacity:1}
 
-    .login-section {
-      max-width: 420px;
-      margin: 60px auto;
-      background: #fff;
-      border: 2px solid #ff7a00;
-      border-radius: 14px;
-      padding: 30px;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.05);
-      text-align: center;
-    }
+    /* LOGIN FORM */
+    .login-section{max-width:420px;margin:60px auto;background:#fff;border:2px solid #ff7a00;border-radius:14px;padding:30px;box-shadow:0 10px 28px rgba(0,0,0,0.05);text-align:center}
+    .login-section h2{color:#ff7a00;margin-bottom:14px}
+    .login-section p{color:#666;margin-bottom:22px}
+    .login-section input{width:100%;padding:10px 12px;margin-bottom:14px;border-radius:8px;border:1px solid #ddd;font-family:inherit}
+    .login-section button{display:inline-block;background:#ff7a00;color:#fff;font-weight:600;border:none;border-radius:999px;padding:12px 24px;cursor:pointer;transition:all .25s;box-shadow:0 6px 18px rgba(255,122,0,0.18)}
+    .login-section button:hover{background:#ffae42;transform:translateY(-3px)}
+    .message{margin-top:14px;font-weight:500}
+    .success{color:#28a745}
+    .error{color:#e74c3c}
 
-    .login-section h2 {
-      color: #ff7a00;
-      margin-bottom: 14px;
-    }
+    /* PROFILE */
+    .hidden{display:none}
+    .profile-section{max-width:700px;margin:40px auto;background:#fff;border:2px solid #ff7a00;border-radius:14px;padding:28px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.05)}
+    .profile-section h2{color:#ff7a00;margin-bottom:6px}
+    .level{font-weight:600;margin-bottom:10px}
+    .xp-bar{width:100%;height:16px;background:#eee;border-radius:10px;overflow:hidden;margin:10px 0 16px}
+    .xp-fill{height:100%;background:linear-gradient(90deg,#ff7a00,#ffae42);width:0%;transition:width .5s}
+    .xp-info{color:#666;font-size:0.95rem}
 
-    .login-section p {
-      color: #666;
-      margin-bottom: 22px;
-    }
+    /* TRAINING */
+    .training-section{max-width:700px;margin:40px auto;background:#fff;border:2px solid #ff7a00;border-radius:14px;padding:28px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,0.05)}
+    .training-section h2{color:#ff7a00;margin-bottom:14px}
+    .lesson{border:1px solid #ff7a00;border-radius:10px;padding:12px;margin:10px 0;transition:all .25s;cursor:pointer}
+    .lesson:hover{background:#ff7a00;color:#fff;transform:translateY(-3px)}
+    .lesson.done{background:#ffae42;color:#fff;cursor:default;opacity:0.8}
+    .lesson.done:hover{transform:none}
 
-    .login-section input {
-      width: 100%;
-      padding: 10px 12px;
-      margin-bottom: 14px;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      font-family: inherit;
-    }
+    /* FOOTER */
+    footer{background:#111;color:#eee;padding:30px 6%;margin-top:40px}
+    .footer-container{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
+    .footer-section{min-width:180px}
+    .footer-section h3{color:#ff7a00;margin-bottom:8px}
+    .footer-section a{display:block;color:#ccc;text-decoration:none;margin-bottom:8px;transition:color .2s}
+    .footer-section a:hover{color:#fff}
+    .socials{display:flex;gap:10px;margin-top:8px}
+    .social-icon{width:40px;height:40px;border-radius:50%;display:inline-block;background-size:60% 60%;background-position:center;background-repeat:no-repeat;box-shadow:0 6px 18px rgba(0,0,0,0.08);transition:transform .18s,filter .18s}
+    .social-icon:hover{transform:translateY(-4px);filter:brightness(1.05)}
+    .social-icon.instagram{background-color:#E1306C;background-image:url('https://cdn-icons-png.flaticon.com/512/2111/2111463.png')}
+    .social-icon.whatsapp{background-color:#25D366;background-image:url('https://cdn-icons-png.flaticon.com/512/2111/2111728.png')}
+    .footer-bottom{text-align:center;color:#999;margin-top:18px;font-size:0.95rem}
 
-    .login-section button {
-      display: inline-block;
-      background: #ff7a00;
-      color: #fff;
-      font-weight: 600;
-      border: none;
-      border-radius: 999px;
-      padding: 12px 24px;
-      cursor: pointer;
-      transition: all .25s;
-      box-shadow: 0 6px 18px rgba(255,122,0,0.18);
-    }
-
-    .login-section button:hover {
-      background: #ffae42;
-      transform: translateY(-3px);
-    }
-
-    .message {
-      margin-top: 14px;
-      font-weight: 500;
-    }
-
-    .success {
-      color: #28a745;
-    }
-
-    .error {
-      color: #e74c3c;
-    }
-
-    @media (max-width:600px) {
-      .login-section {
-        margin: 40px 20px;
-        padding: 24px;
-      }
-    }
+    @media (max-width:600px){.login-section,.profile-section,.training-section{margin:24px 6%;padding:24px}}
   </style>
 </head>
 
@@ -90,26 +69,34 @@
     <div class="logo">🔥 Феникс</div>
     <nav>
       <a href="index.html">Главная</a>
-      <a href="about.html">О нас</a>
-      <a href="structure.html">Структура</a>
       <a href="projects.html">Проекты</a>
-      <a href="methodology.html">Методическая база</a>
-      <a href="best.html">Лучшие месяца</a>
       <a href="contacts.html">Контакты</a>
-      <a href="login.html" class="active">Вход</a>
+      <a href="login.html" class="active">Профиль</a>
     </nav>
   </header>
 
-  <section class="login-section">
+  <!-- ВХОД -->
+  <section class="login-section" id="loginBox">
     <h2>Вход волонтёра</h2>
-    <p>Введите ваше имя и индивидуальный номер волонтёра</p>
-
+    <p>Введите ваше имя и номер</p>
     <input type="text" id="name" placeholder="Имя">
-    <input type="text" id="id" placeholder="Индивидуальный номер">
-
+    <input type="text" id="id" placeholder="Номер волонтёра">
     <button onclick="login()">Войти</button>
-
     <div class="message" id="message"></div>
+  </section>
+
+  <!-- ПРОФИЛЬ -->
+  <section class="profile-section hidden" id="profileSection">
+    <h2 id="profileName"></h2>
+    <p class="level" id="levelDisplay"></p>
+    <div class="xp-bar"><div class="xp-fill" id="xpFill"></div></div>
+    <div class="xp-info" id="xpInfo"></div>
+  </section>
+
+  <!-- ОБУЧЕНИЕ -->
+  <section class="training-section hidden" id="trainingSection">
+    <h2>Обучение волонтёра</h2>
+    <div id="lessons"></div>
   </section>
 
   <footer>
@@ -117,7 +104,6 @@
       <div class="footer-section">
         <h3>Быстрые ссылки</h3>
         <a href="index.html">Главная</a>
-        <a href="about.html">О нас</a>
         <a href="projects.html">Проекты</a>
         <a href="contacts.html">Контакты</a>
       </div>
@@ -129,17 +115,16 @@
       <div class="footer-section">
         <h3>Мы в соцсетях</h3>
         <div class="socials">
-          <a href="https://instagram.com/vc_feniks" target="_blank" class="social-icon instagram" aria-label="Instagram"></a>
-          <a href="https://wa.me/77719614620" target="_blank" class="social-icon whatsapp" aria-label="WhatsApp"></a>
+          <a href="https://instagram.com/vc_feniks" target="_blank" class="social-icon instagram"></a>
+          <a href="https://wa.me/77719614620" target="_blank" class="social-icon whatsapp"></a>
         </div>
       </div>
     </div>
     <p class="footer-bottom">© 2025 Волонтёрский центр «Феникс». Все права защищены.</p>
   </footer>
 
-  <a href="#top" class="to-top">↑</a>
-
   <script>
+    // Пример волонтёров
     const volunteers = [
       { name: "Алиса", id: "F001" },
       { name: "Бекзат", id: "F002" },
@@ -147,34 +132,88 @@
       { name: "Слава", id: "F004" }
     ];
 
+    const loginBox = document.getElementById("loginBox");
+    const profileSection = document.getElementById("profileSection");
+    const trainingSection = document.getElementById("trainingSection");
+    const message = document.getElementById("message");
+
+    // Уроки
+    const lessonsList = [
+      "Основы волонтёрства",
+      "Командная работа",
+      "Этика общения",
+      "Первая помощь",
+      "Экологические инициативы",
+      "Работа с детьми",
+      "Помощь животным",
+      "Организация мероприятий"
+    ];
+
+    let user = JSON.parse(localStorage.getItem("feniks_user")) || null;
+    if (user) showProfile();
+
     function login() {
       const name = document.getElementById("name").value.trim();
       const id = document.getElementById("id").value.trim();
-      const message = document.getElementById("message");
 
       if (!name || !id) {
-        message.textContent = "Пожалуйста, заполните все поля.";
+        message.textContent = "Заполните все поля.";
         message.className = "message error";
         return;
       }
 
       const found = volunteers.find(v => v.name.toLowerCase() === name.toLowerCase() && v.id === id);
-
       if (found) {
-        message.textContent = "Добро пожаловать, " + found.name + "!";
-        message.className = "message success";
+        user = JSON.parse(localStorage.getItem("feniks_" + id)) || { name: found.name, id: found.id, xp: 0 };
+        localStorage.setItem("feniks_user", JSON.stringify(user));
+        showProfile();
       } else {
-        message.textContent = "Имя или номер не совпадают. Попробуйте снова.";
+        message.textContent = "Имя или номер неверные.";
         message.className = "message error";
       }
     }
 
-    // Кнопка "вверх"
-    const toTop = document.querySelector(".to-top");
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 300) toTop.classList.add("show");
-      else toTop.classList.remove("show");
-    });
+    function showProfile() {
+      loginBox.classList.add("hidden");
+      profileSection.classList.remove("hidden");
+      trainingSection.classList.remove("hidden");
+      document.getElementById("profileName").textContent = "Добро пожаловать, " + user.name + "!";
+      updateLevel();
+      loadLessons();
+    }
+
+    function updateLevel() {
+      let level = Math.floor(user.xp / 50) + 1;
+      let nextLevelXp = level * 50;
+      let percent = (user.xp % 50) / 50 * 100;
+      document.getElementById("levelDisplay").textContent = "Уровень " + level;
+      document.getElementById("xpFill").style.width = percent + "%";
+      document.getElementById("xpInfo").textContent = user.xp + " / " + nextLevelXp + " очков";
+      localStorage.setItem("feniks_" + user.id, JSON.stringify(user));
+    }
+
+    function loadLessons() {
+      const container = document.getElementById("lessons");
+      container.innerHTML = "";
+      lessonsList.forEach((lesson, index) => {
+        const div = document.createElement("div");
+        div.className = "lesson";
+        const key = "lesson_" + user.id + "_" + index;
+        const done = localStorage.getItem(key);
+        if (done) div.classList.add("done");
+        div.textContent = (done ? "✅ " : "📘 ") + lesson;
+        div.onclick = () => completeLesson(div, key);
+        container.appendChild(div);
+      });
+    }
+
+    function completeLesson(div, key) {
+      if (div.classList.contains("done")) return;
+      div.classList.add("done");
+      localStorage.setItem(key, "done");
+      user.xp += 10;
+      updateLevel();
+    }
   </script>
 </body>
 </html>
