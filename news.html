@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Новости — Феникс</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <style>
+     header{position:sticky;top:0;z-index:100;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 6%;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+    .logo{font-weight:700;color:#ff7a00;font-size:1.2rem;display:flex;align-items:center;gap:8px}
+    .news-section {
+      padding: 40px 6%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+    .news-card {
+      background: #fff;
+      border: 2px solid #ff7a00;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+      transition: all .25s;
+    }
+    .news-card:hover {
+      transform: translateY(-6px);
+      background: #ff7a00;
+      color: #fff;
+    }
+    .news-img {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+    }
+    .news-content {
+      padding: 16px;
+    }
+    .news-content h3 {
+      margin-bottom: 8px;
+    }
+    .news-content p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .news-card:hover p { color: #fff; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🔥 Феникс</div>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="about.html">О нас</a>
+      <a href="structure.html">Структура</a>
+      <a href="projects.html">Проекты</a>
+      <a href="methodology.html">Методическая база</a>
+      <a href="best.html">Лучшие месяца</a>
+      <a href="news.html" class="active">Новости</a>
+      <a href="contacts.html">Контакты</a>
+      <a href="login.html">Вход</a>
+    </nav>
+  </header>
+
+  <section class="page-header">
+    <h2>Новости и события</h2>
+    <p>Читайте о наших акциях, поездках и проектах.</p>
+  </section>
+
+  <section class="news-section">
+    <div class="news-card">
+      <div class="news-img" style="background-image:url('https://via.placeholder.com/600x400?text=Субботник');"></div>
+      <div class="news-content">
+        <h3>Эко-субботник в парке</h3>
+        <p>Наши волонтёры собрали более 20 мешков мусора и высадили деревья!</p>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-img" style="background-image:url('https://via.placeholder.com/600x400?text=Приют');"></div>
+      <div class="news-content">
+        <h3>Помощь приюту «Доброта»</h3>
+        <p>Собрали 45 кг корма и игрушки для животных, помогли с уборкой вольеров.</p>
+      </div>
+    </div>
+    <div class="news-card">
+      <div class="news-img" style="background-image:url('https://via.placeholder.com/600x400?text=Обучение');"></div>
+      <div class="news-content">
+        <h3>Обучение новых волонтёров</h3>
+        <p>Провели вводный курс по направлениям и навыкам первой помощи.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Быстрые ссылки</h3>
+        <a href="index.html">Главная</a>
+        <a href="about.html">О нас</a>
+        <a href="projects.html">Проекты</a>
+        <a href="contacts.html">Контакты</a>
+      </div>
+      <div class="footer-section">
+        <h3>Контакты</h3>
+        <p>📞 <a href="tel:+77719614620">+7 771 961 4620</a></p>
+        <p>📧 <a href="mailto:slavavolkov730@gmail.com">slavavolkov730@gmail.com</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Мы в соцсетях</h3>
+        <div class="socials">
+          <a href="https://instagram.com/vc_feniks" target="_blank" class="social-icon instagram"></a>
+          <a href="https://wa.me/77719614620" target="_blank" class="social-icon whatsapp"></a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">© 2025 Волонтёрский центр «Феникс». Все права защищены.</p>
+  </footer>
+
+  <a href="#top" class="to-top">↑</a>
+</body>
+</html>
