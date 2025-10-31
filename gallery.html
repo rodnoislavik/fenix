@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Галерея — Феникс</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .gallery {
+      padding: 40px 6%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      transition: transform .25s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🔥 Феникс</div>
+    <nav>
+      <a href="index.html">Главная</a>
+      <a href="about.html">О нас</a>
+      <a href="structure.html">Структура</a>
+      <a href="projects.html">Проекты</a>
+      <a href="methodology.html">Методическая база</a>
+      <a href="best.html">Лучшие месяца</a>
+      <a href="contacts.html">Контакты</a>
+      <a href="login.html">Вход</a>
+      <a href="news.html">Новости</a>
+      <a href="gallery.html" class="active">Галерея</a>
+    </nav>
+  </header>
+
+  <section class="page-header">
+    <h2>Галерея</h2>
+    <p>Моменты из жизни волонтёрского центра «Феникс»</p>
+  </section>
+
+  <section class="gallery">
+    <img src="https://via.placeholder.com/400x300?text=Акция+1" alt="">
+    <img src="https://via.placeholder.com/400x300?text=Поездка" alt="">
+    <img src="https://via.placeholder.com/400x300?text=Мероприятие" alt="">
+    <img src="https://via.placeholder.com/400x300?text=Команда" alt="">
+    <img src="https://via.placeholder.com/400x300?text=Субботник" alt="">
+    <img src="https://via.placeholder.com/400x300?text=Приют" alt="">
+  </section>
+
+<footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Быстрые ссылки</h3>
+        <a href="index.html">Главная</a>
+        <a href="about.html">О нас</a>
+        <a href="projects.html">Проекты</a>
+        <a href="contacts.html">Контакты</a>
+      </div>
+      <div class="footer-section">
+        <h3>Контакты</h3>
+        <p>📞 <a href="tel:+77719614620">+7 771 961 4620</a></p>
+        <p>📧 <a href="mailto:slavavolkov730@gmail.com">slavavolkov730@gmail.com</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Мы в соцсетях</h3>
+        <div class="socials">
+          <a href="https://instagram.com/vc_feniks" target="_blank" class="social-icon instagram"></a>
+          <a href="https://wa.me/77719614620" target="_blank" class="social-icon whatsapp"></a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">© 2025 Волонтёрский центр «Феникс». Все права защищены.</p>
+  </footer>
+  <a href="#top" class="to-top">↑</a>
+</body>
+</html>
