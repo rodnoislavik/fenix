@@ -124,6 +124,21 @@
     { name: "Слава", id: "F004" }
   ];
 
+   document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const name = document.getElementById("name").value.trim();
+    const id = document.getElementById("id").value.trim();
+
+    const user = users.find(u => u.name === name && u.id === id);
+    if (user) {
+      // сохраняем пользователя в localStorage
+      localStorage.setItem('volunteerName', name);
+      localStorage.setItem('volunteerId', id);
+      // переходим в профиль
+      window.location.href = "profile.html";
+    } else {
+      alert("Неверные данные!");
+
   const msg = document.getElementById('msg');
   const logoutBtn = document.getElementById('logoutBtn');
 
@@ -179,6 +194,7 @@
 </script>
 </body>
 </html>
+
 
 
 
