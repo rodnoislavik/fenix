@@ -163,18 +163,7 @@
       msg.className = 'message error';
       return;
     }
-    // Загружаем существующие данные по id или создаём
-    let stored = JSON.parse(localStorage.getItem('feniks_' + id));
-    if(!stored){
-      stored = { name: found.name, id: found.id, xp: 0 };
-      localStorage.setItem('feniks_' + id, JSON.stringify(stored));
-    }
-    localStorage.setItem('feniks_user', JSON.stringify(stored));
-    msg.textContent = 'Вход успешен. Перенаправляю в профиль...';
-    msg.className = 'message success';
-    refreshAuthUI();
-    setTimeout(()=>{ window.location.href = 'profile.html'; }, 800);
-  }
+    
 
   function logout(){
     // Удаляем только активную сессию, сохраняем feniks_<id>
@@ -194,6 +183,7 @@
 </script>
 </body>
 </html>
+
 
 
 
