@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Феникс — Профиль</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    /* === Тот же стиль (копия) === */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Poppins',sans-serif;background:#f8f8f8;color:#222;line-height:1.6}
+    a{color:inherit}
+    header{position:sticky;top:0;z-index:100;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 6%;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+    .logo{font-weight:700;color:#ff7a00;font-size:1.2rem;display:flex;align-items:center;gap:8px}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{color:#555;text-decoration:none;padding:8px 6px;border-radius:6px;position:relative;transition:color .25s}
+    nav a:hover{color:#ff7a00}
+    nav a.active::after{content:'';position:absolute;left:0;right:0;bottom:-8px;height:3px;background:#ff7a00;border-radius:4px;transform:translateY(6px);opacity:1}
+    .page-header{text-align:center;padding:28px 6%;background:transparent}
+    /* profile card */
+    .profile-section{max-width:880px;margin:28px auto;background:#fff;border:2px solid #ff7a00;border-radius:12px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,0.05)}
+    .profile-top{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+    .avatar{width:110px;height:110px;border-radius:12px;background:#e9e9e9;background-image:url('https://via.placeholder.com/200x200?text=Аватар');background-size:cover;background-position:center;border:4px solid #fff;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+    .profile-info{flex:1}
+    .profile-info h2{color:#ff7a00;margin-bottom:6px}
+    .level{font-weight:600;margin-bottom:8px}
+    .xp-bar{width:100%;height:16px;background:#eee;border-radius:10px;overflow:hidden;margin-bottom:10px}
+    .xp-fill{height:100%;background:linear-gradient(90deg,#ff7a00,#ffae42);width:0%;transition:width .5s}
+    .stats{display:flex;gap:18px;margin-top:8px;flex-wrap:wrap}
+    .stat{background:#fff;border:1px solid #eee;padding:10px;border-radius:10px;min-width:120px;text-align:center}
+    .stat h4{margin-bottom:6px;color:#ff7a00}
+    .controls{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .btn-primary{display:inline-block;background:#ff7a00;color:#fff;padding:10px 18px;border-radius:999px;text-decoration:none;font-weight:600;transition:all .25s;border:none;cursor:pointer}
+    .btn-primary:hover{background:#ffae42;transform:translateY(-3px)}
+    /* footer */
+    footer{background:#111;color:#eee;padding:30px 6%;margin-top:30px}
+    .footer-container{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between}
+    .footer-section{min-width:180px}
+    .footer-section h3{color:#ff7a00;margin-bottom:8px}
+    .footer-section a{display:block;color:#ccc;text-decoration:none;margin-bottom:8px;transition:color .2s}
+    .footer-section a:hover{color:#fff}
+    .socials{display:flex;gap:10px;margin-top:8px}
+    .social-icon{width:40px;height:40px;border-radius:50%;display:inline-block;background-size:60% 60%;background-position:center;background-repeat:no-repeat;box-shadow:0 6px 18px rgba(0,0,0,0.08);transition:transform .18s,filter .18s}
+    .social-icon:hover{transform:translateY(-4px);filter:brightness(1.05)}
+    .social-icon.instagram{background-color:#E1306C;background-image:url('https://cdn-icons-png.flaticon.com/512/2111/2111463.png')}
+    .social-icon.whatsapp{background-color:#25D366;background-image:url('https://cdn-icons-png.flaticon.com/512/2111/2111728.png')}
+    .footer-bottom{text-align:center;color:#999;margin-top:18px;font-size:0.95rem}
+    .to-top{position:fixed;right:22px;bottom:22px;background:#ff7a00;color:#fff;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-weight:700;box-shadow:0 8px 24px rgba(255,122,0,0.18);transition:transform .18s,opacity .2s;opacity:0;pointer-events:none}
+    .to-top.show{opacity:1;pointer-events:auto;transform:translateY(-6px)} .to-top:hover{transform:translateY(-8px)}
+    @media (max-width:900px){.profile-top{flex-direction:column;align-items:center}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">🔥 Феникс</div>
+    <nav id="nav">
+      <a href="index.html">Главная</a>
+      <a href="about.html">О нас</a>
+      <a href="structure.html">Структура</a>
+      <a href="projects.html">Проекты</a>
+      <a href="methodology.html">Методическая база</a>
+      <a href="best.html">Лучшие месяца</a>
+      <a href="news.html">Новости</a>
+      <a href="gallery.html">Галерея</a>
+      <a href="feedback.html">Отзывы</a>
+      <a href="contacts.html">Контакты</a>
+      <a href="login.html">Вход</a>
+      <button id="logoutBtn" class="btn-primary" style="margin-left:12px;display:none" onclick="logout()">Выйти</button>
+    </nav>
+  </header>
+
+  <section class="page-header">
+    <h1>Профиль волонтёра</h1>
+    <p>Здесь отображается ваш уровень, прогресс и общие очки.</p>
+  </section>
+
+  <section class="profile-section" id="profile">
+    <div class="profile-top">
+      <div class="avatar" id="avatar"></div>
+      <div class="profile-info">
+        <h2 id="profileName">Добро пожаловать</h2>
+        <div class="level" id="levelText">Уровень 1</div>
+        <div class="xp-bar"><div class="xp-fill" id="xpFill" style="width:0%"></div></div>
+        <div class="xp-info" id="xpInfo" style="color:#666;margin-bottom:8px">0 / 50 очков</div>
+
+        <div class="stats">
+          <div class="stat">
+            <h4>Очки</h4>
+            <div id="xpStat">0</div>
+          </div>
+          <div class="stat">
+            <h4>Проекты</h4>
+            <div id="projectsStat">3</div>
+          </div>
+          <div class="stat">
+            <h4>Уровень</h4>
+            <div id="levelStat">1</div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <a href="training.html" class="btn-primary">Перейти к обучению</a>
+          <button class="btn-primary" onclick="logout()">Выйти</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>Быстрые ссылки</h3>
+        <a href="index.html">Главная</a>
+        <a href="about.html">О нас</a>
+        <a href="projects.html">Проекты</a>
+        <a href="contacts.html">Контакты</a>
+      </div>
+      <div class="footer-section">
+        <h3>Контакты</h3>
+        <p>📞 <a href="tel:+77719614620">+7 771 961 4620</a></p>
+        <p>📧 <a href="mailto:slavavolkov730@gmail.com">slavavolkov730@gmail.com</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Мы в соцсетях</h3>
+        <div class="socials">
+          <a href="https://instagram.com/vc_feniks" target="_blank" class="social-icon instagram" aria-label="Instagram"></a>
+          <a href="https://wa.me/77719614620" target="_blank" class="social-icon whatsapp" aria-label="WhatsApp"></a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">© 2025 Волонтёрский центр «Феникс». Все права защищены.</p>
+  </footer>
+
+  <a href="#top" class="to-top">↑</a>
+
+<script>
+  // Загрузка активного пользователя
+  let user = JSON.parse(localStorage.getItem('feniks_user'));
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  function showMessageAndRedirect(){
+    alert('Чтобы смотреть профиль, сначала войдите. Перенаправляю на страницу входа.');
+    window.location.href = 'login.html';
+  }
+
+  if(!user){
+    // если нет активной сессии, но есть сохранённые аккаунты — можно предложить войти
+    const anySaved = Object.keys(localStorage).some(k=>k.startsWith('feniks_'));
+    if(anySaved){
+      showMessageAndRedirect();
+    } else {
+      showMessageAndRedirect();
+    }
+  } else {
+    // показываем профиль
+    document.getElementById('profileName').textContent = 'Добро пожаловать, ' + user.name + '!';
+    logoutBtn.style.display = 'inline-block';
+    updateProfileUI();
+  }
+
+  function updateProfileUI(){
+    // уровень: каждые 50 xp = +1 уровень (уровень = Math.floor(xp/50)+1)
+    const xp = user.xp || 0;
+    const level = Math.floor(xp / 50) + 1;
+    const nextLevelXp = level * 50;
+    const percent = ((xp % 50) / 50) * 100;
+    document.getElementById('levelText').textContent = 'Уровень ' + level;
+    document.getElementById('xpFill').style.width = percent + '%';
+    document.getElementById('xpInfo').textContent = xp + ' / ' + nextLevelXp + ' очков';
+    document.getElementById('xpStat').textContent = xp;
+    document.getElementById('levelStat').textContent = level;
+    // projectsStat — статический пример, можешь менять
+    document.getElementById('projectsStat').textContent = 3;
+    // сохраняем состояние в локал
+    localStorage.setItem('feniks_' + user.id, JSON.stringify(user));
+    localStorage.setItem('feniks_user', JSON.stringify(user));
+  }
+
+  function logout(){
+    localStorage.removeItem('feniks_user');
+    // не удаляем feniks_<id>
+    window.location.href = 'login.html';
+  }
+
+  // удобство: обновлять UI если кто-то из других вкладок изменил данные
+  window.addEventListener('storage', (e)=>{
+    if(e.key === 'feniks_user'){
+      user = JSON.parse(localStorage.getItem('feniks_user'));
+      if(user) updateProfileUI();
+    }
+  });
+
+  // to-top
+  const toTop = document.querySelector('.to-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) toTop.classList.add('show');
+    else toTop.classList.remove('show');
+  });
+</script>
+</body>
+</html>
