@@ -59,11 +59,11 @@
       <a href="projects.html">Проекты</a>
       <a href="methodology.html">Методическая база</a>
       <a href="best.html">Лучшие месяца</a>
+      <a href="contacts.html">Контакты</a>
       <a href="login.html" class="active">Вход</a>
       <a href="news.html">Новости</a>
       <a href="gallery.html">Галерея</a>
       <a href="feedback.html">Отзывы</a>
-      <a href="contacts.html">Контакты</a>
       <button id="logoutBtn" class="btn-primary" style="margin-left:12px;display:none" onclick="logout()">Выйти</button>
     </nav>
   </header>
@@ -116,54 +116,70 @@
   <a href="#top" class="to-top">↑</a>
 
 <script>
-  // --- СПИСОК ВОЛОНТЁРОВ ---
-  // (ты можешь сам потом добавить настоящие имена и номера)
-  const users = [
-    { name: "Иван", id: "001" },
-    { name: "Мария", id: "002" },
-    { name: "Алия", id: "003" },
-    { name: "Слава", id: "777" }
+  // Примеры волонтёров (ты можешь менять/добавлять)
+  const volunteers = [
+    { name: "Алиса", id: "F001" },
+    { name: "Бекзат", id: "F002" },
+    { name: "Мария", id: "F003" },
+    { name: "Слава", id: "F004" }
   ];
 
-  // --- ПРОВЕРКА: ЕСЛИ УЖЕ ВОШЁЛ, СРАЗУ В ПРОФИЛЬ ---
-  const savedName = localStorage.getItem('volunteerName');
-  const savedId = localStorage.getItem('volunteerId');
-  if (savedName && savedId) {
-    window.location.href = "profile.html";
+  const msg = document.getElementById('msg');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  // Показываем кнопку Выйти если уже залогинен
+  function refreshAuthUI(){
+    const user = JSON.parse(localStorage.getItem('feniks_user'));
+    logoutBtn.style.display = user ? 'inline-block' : 'none';
   }
+  refreshAuthUI();
 
-  // --- ВХОД ПО ФОРМЕ ---
-  document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const name = document.getElementById("name").value.trim();
-    const id = document.getElementById("id").value.trim();
-
-    const user = users.find(u => u.name === name && u.id === id);
-
-    if (user) {
-      // сохраняем данные в localStorage
-      localStorage.setItem('volunteerName', name);
-      localStorage.setItem('volunteerId', id);
-      localStorage.setItem('volunteerPoints', localStorage.getItem('volunteerPoints') || 0);
-      localStorage.setItem('volunteerLevel', localStorage.getItem('volunteerLevel') || 1);
-
-      // переходим в профиль
-      window.location.href = "profile.html";
-    } else {
-      alert("Неверное имя или номер волонтёра!");
+  function login(){
+    const name = document.getElementById('name').value.trim();
+    const id = document.getElementById('id').value.trim();
+    if(!name || !id){
+      msg.textContent = 'Пожалуйста, заполните оба поля.';
+      msg.className = 'message error';
+      return;
     }
-  });
-
-  // --- ФУНКЦИЯ ВЫХОДА ---
-  function logout() {
-    localStorage.removeItem('volunteerName');
-    localStorage.removeItem('volunteerId');
-    window.location.href = "login.html";
+    const found = volunteers.find(v=>v.name.toLowerCase()===name.toLowerCase() && v.id === id);
+    if(!found){
+      msg.textContent = 'Имя или номер не найдены в базе. Проверьте ввод.';
+      msg.className = 'message error';
+      return;
+    }
+    // Загружаем существующие данные по id или создаём
+    let stored = JSON.parse(localStorage.getItem('feniks_' + id));
+    if(!stored){
+      stored = { name: found.name, id: found.id, xp: 0 };
+      localStorage.setItem('feniks_' + id, JSON.stringify(stored));
+    }
+    localStorage.setItem('feniks_user', JSON.stringify(stored));
+    msg.textContent = 'Вход успешен. Перенаправляю в профиль...';
+    msg.className = 'message success';
+    refreshAuthUI();
+    setTimeout(()=>{ window.location.href = 'profile.html'; }, 800);
   }
+
+  function logout(){
+    // Удаляем только активную сессию, сохраняем feniks_<id>
+    localStorage.removeItem('feniks_user');
+    refreshAuthUI();
+    // Остаёмся на странице, показываем сообщение
+    msg.textContent = 'Вы вышли. Очки и прогресс сохранены.';
+    msg.className = 'message success';
+  }
+
+  // to-top button
+  const toTop = document.querySelector('.to-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) toTop.classList.add('show');
+    else toTop.classList.remove('show');
+  });
 </script>
 </body>
 </html>
+
 
 
 
